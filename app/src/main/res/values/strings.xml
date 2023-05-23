@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Cafes</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_detail_carton">DetailCarton</string>
+    <string name="title_activity_registro">Registro</string>
+    <string name="title_activity_users">Users</string>
+    <string name="title_activity_carton_detail">CartonDetail</string>
+    <string name="title_activity_detail_user">DetailUser</string>
 </resources>

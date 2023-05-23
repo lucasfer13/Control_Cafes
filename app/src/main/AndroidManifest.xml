@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,10 +12,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cafes"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.DetailUser"
+            android:exported="false"
+            android:label="@string/title_activity_detail_user"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.CartonDetail"
+            android:exported="false"
+            android:label="@string/title_activity_carton_detail"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.Users"
+            android:exported="false"
+            android:label="@string/title_activity_users"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.Registro"
+            android:exported="false"
+            android:label="@string/title_activity_registro"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.DetailCarton"
+            android:exported="false"
+            android:label="@string/title_activity_detail_carton"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.Login"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.Cafes" />
+        <activity
+            android:name=".screens.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_main"
             android:theme="@style/Theme.Cafes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
