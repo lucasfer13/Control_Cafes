@@ -1,39 +1,9 @@
 package com.example.cafes.models
 
-import retrofit2.http.Field
+import com.google.gson.annotations.SerializedName
 
-class User {
-
-    private var id : Int = 0
-        get() { return id }
-    private var esAdmin: Boolean
-        get() {return esAdmin}
-    private var userName: String
-        get() { return userName }
-    private var pass: String
-        get() { return pass }
-    private var cartons : ArrayList<Carton> = ArrayList<Carton>()
-        get() { return cartons }
-
-    constructor(
-        @Field("id") id: Int,
-        @Field("admin") esAdmin: Boolean,
-        @Field("login") userName: String,
-        @Field("password") pass: String,
-        @Field("cartons") cartons: ArrayList<Carton>
-    ) {
-        this.id = id
-        this.esAdmin = esAdmin
-        this.userName = userName
-        this.pass = pass
-        this.cartons = cartons
-    }
-
-    constructor(esAdmin: Boolean, userName: String, pass: String) {
-        this.esAdmin = esAdmin
-        this.userName = userName
-        this.pass = pass
-    }
-
-
-}
+data class User(@SerializedName("id") val id : Int,
+                @SerializedName("admin") val esAdmin : Boolean,
+                @SerializedName("login") val userName : String,
+                @SerializedName("password") val password : String,
+                @SerializedName("cartons") val cartons : List<Carton>)

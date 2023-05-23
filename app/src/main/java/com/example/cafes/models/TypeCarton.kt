@@ -1,16 +1,8 @@
 package com.example.cafes.models
 
-class TypeCarton {
-    private var id : Int
-        get() {return id}
-    private var price : Double
-        get() { return price }
-    private var total : Int
-        get() { return total }
+import com.google.gson.annotations.SerializedName
 
-    constructor(id: Int, price: Double, total: Int) {
-        this.id = id
-        this.price = price
-        this.total = total
-    }
-}
+data class TypeCarton(
+                    @SerializedName("id") val id : Int,
+                    @SerializedName("total_coffee") val total : Int,
+                    @SerializedName("price") val price : Double)

@@ -7,13 +7,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class APIAdapter {
     companion object {
-        private val url : String = "http://10.0.0.45/api/"
+        private val url : String = "http://10.0.1.45:8080/"
         private var service : APIService? = null
         public fun getApiService() : APIService? {
             val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor()
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val client : OkHttpClient.Builder = OkHttpClient.Builder()
-            client.addInterceptor(interceptor = interceptor)
+            //client.addInterceptor(interceptor = interceptor)
 
             if (service == null) {
                 val retrofit : Retrofit = Retrofit.Builder()
