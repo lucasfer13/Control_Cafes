@@ -8,6 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -96,7 +98,8 @@ fun SignInScreen(){
                     color = if (isPasswordError.value) Color.Red else Color.Transparent,
                     shape = RoundedCornerShape(4.dp)
                 ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+            visualTransformation = PasswordVisualTransformation()
         )
         TextField(
             value = confirmPassword.value,
@@ -114,7 +117,8 @@ fun SignInScreen(){
                     color = if (isConfirmPasswordError.value) Color.Red else Color.Transparent,
                     shape = RoundedCornerShape(4.dp)
                 ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+            visualTransformation = PasswordVisualTransformation()
         )
         Button(
             onClick = {
@@ -137,20 +141,32 @@ fun SignInScreenLogo(){
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        /*Image(
-            painter = painterResource(R.drawable.coffeeicon),
-            contentDescription = "Cafés express ícono",
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 16.dp)
-        )*/
-        Text(
-            text = "Made by Becarios",
-            style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 24.sp),
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 16.dp)
-        )
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    text = "Cafetería Express",
+                    style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 24.sp),
+                    modifier = Modifier.padding(1.dp)
+                )
+            }
+            Row(
+                modifier = Modifier.padding(1.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    text = "Made by Becarios",
+                    style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 12.sp),
+                    modifier = Modifier.padding(1.dp)
+                )
+            }
+        }
         SignInScreen()
     }
 }
