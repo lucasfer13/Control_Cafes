@@ -10,7 +10,7 @@ import com.example.cafes.viewModel.CartonViewModel
 import com.example.cafes.viewModel.UserViewModel
 
 val cartonViewModel: CartonViewModel = CartonViewModel()
-//val userViewModel: UserViewModel = UserViewModel()
+val userViewModel: UserViewModel = UserViewModel()
 
 /*fun getUsers(): MutableLiveData<ArrayList<User>> {
     return userRepository.userlist
@@ -18,4 +18,8 @@ val cartonViewModel: CartonViewModel = CartonViewModel()
 
 fun getCartons(): SnapshotStateList<Carton> {
     return cartonViewModel.getCartons()
+}
+
+fun getUsers(): SnapshotStateList<User> {
+    return userViewModel.getUsers()
 }

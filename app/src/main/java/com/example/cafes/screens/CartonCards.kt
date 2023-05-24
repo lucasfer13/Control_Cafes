@@ -126,7 +126,7 @@ fun Cards(navController: NavController){
     val c = remember { cartons }
     LazyColumn() {
         items(c) {
-            carton -> Card(carton = carton, navController = navController)
+            carton -> CartonCard(carton = carton, navController = navController)
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -152,7 +152,7 @@ fun NewCartonButton(navController: NavController){
 }
 
 @Composable
-fun Card(carton: Carton, navController: NavController){
+fun CartonCard(carton: Carton, navController: NavController){
     Card(
         Modifier
             .padding(10.dp)

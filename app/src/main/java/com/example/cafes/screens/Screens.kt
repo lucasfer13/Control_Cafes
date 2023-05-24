@@ -10,6 +10,7 @@ sealed class Screen(val route:String){
     object NewAccount: Screen(route = "signInScreenLogo")
     object Enter: Screen(route = "enterApp")
     object NewCarton: Screen(route = "newCarton")
+    object SelectPack: Screen(route = "selectPack")
 }
 
 @Composable
