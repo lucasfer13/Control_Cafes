@@ -4,6 +4,10 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
+/**
+ * Adapter API
+ * */
 class APIAdapter {
     companion object {
         private val url : String = "http://10.0.1.45:8080/"
