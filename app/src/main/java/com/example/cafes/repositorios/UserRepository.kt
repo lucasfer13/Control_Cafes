@@ -25,6 +25,7 @@ class UserRepository {
                 }
 
                 override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                    Log.d("USER", t.message!!)
                 }
 
         })
