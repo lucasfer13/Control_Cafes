@@ -1,15 +1,13 @@
 package com.example.cafes.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.cafes.models.Carton
 import com.example.cafes.repositorios.CartonRepository
 
-class CartonViewModel : AndroidViewModel {
+class CartonViewModel() : ViewModel() {
     private val repository: CartonRepository = CartonRepository()
 
-    constructor(application: Application) : super(application)
 
     fun getCartons() : MutableLiveData<ArrayList<Carton>> {
         repository.getCartons()
