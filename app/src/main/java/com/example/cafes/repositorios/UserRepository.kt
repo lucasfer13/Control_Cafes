@@ -11,7 +11,6 @@ import retrofit2.Response
 
 class UserRepository {
     private val allUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
-    var userlist: ArrayList<User> = ArrayList()
 
     constructor()
 
@@ -20,7 +19,7 @@ class UserRepository {
         var call : Call<List<User>> = api!!.users()!!
         call.enqueue(object: Callback<List<User>> {
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                    userlist = response.body()?.toList() as ArrayList<User>
+                    allUsers.postValue(ArrayList(response.body()?.toList()))
                     Log.d("USERFOUNDBYME", "Encontrados")
                 }
 
