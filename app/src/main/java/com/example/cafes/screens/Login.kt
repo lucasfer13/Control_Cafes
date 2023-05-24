@@ -14,7 +14,6 @@ import com.example.cafes.ui.theme.CafesTheme
 class Login : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        call()
         setContent {
             CafesTheme {
                 // A surface container using the 'background' color from the theme
