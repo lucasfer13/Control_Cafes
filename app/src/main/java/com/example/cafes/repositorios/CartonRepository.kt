@@ -1,16 +1,26 @@
 package com.example.cafes.repositorios
 
-import androidx.lifecycle.MutableLiveData
+import com.example.cafes.api.APIAdapter
 import com.example.cafes.models.Carton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CartonRepository {
-    private val allCarton: MutableLiveData<ArrayList<Carton>> = MutableLiveData()
-    private val cartons: ArrayList<Carton> = ArrayList()
+    var cartons: ArrayList<Carton> = ArrayList()
 
     constructor()
 
-    fun callAPI() : MutableLiveData<ArrayList<Carton>> {
-        
-        return allCarton
+    fun getCartons() {
+        APIAdapter.getApiService()?.cartons()?.enqueue(object : Callback<List<Carton>> {
+            override fun onResponse(call: Call<List<Carton>>, response: Response<List<Carton>>) {
+                cartons = response.body()?.toList() as ArrayList<Carton>
+            }
+
+            override fun onFailure(call: Call<List<Carton>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 }
