@@ -34,7 +34,6 @@ sealed class Screen(val route:String){
 
 @Composable
 fun CreateAccountScreen(){
-    call()
     val navController = rememberNavController()
     NavHost(
         navController = navController,
