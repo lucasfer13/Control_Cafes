@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Cafes"
         tools:targetApi="31">
 
@@ -32,27 +33,30 @@
             android:name=".screens.Registro"
             android:exported="false"
             android:label="@string/title_activity_registro"
-            android:theme="@style/Theme.Cafes" />
+            android:theme="@style/Theme.Cafes">
+        </activity>
         <activity
             android:name=".screens.DetailCarton"
             android:exported="false"
             android:label="@string/title_activity_detail_carton"
-            android:theme="@style/Theme.Cafes" />
+            android:theme="@style/Theme.Cafes">
+        </activity>
         <activity
             android:name=".screens.Login"
-            android:exported="false"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.Cafes" />
-        <activity
-            android:name=".screens.MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity_login"
             android:theme="@style/Theme.Cafes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".screens.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Cafes">
         </activity>
     </application>
 

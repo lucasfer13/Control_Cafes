@@ -1,15 +1,10 @@
 package com.example.cafes.models
 
-class Carton {
-    private var id : Int
-    private var total : Int
-    private var gastados : Int
-    private var acabado : Boolean
+import com.google.gson.annotations.SerializedName
 
-    constructor(id: Int, total: Int, gastados: Int, acabado: Boolean) {
-        this.id = id
-        this.total = total
-        this.gastados = gastados
-        this.acabado = acabado
-    }
-}
+data class Carton(
+                    @SerializedName("id") val id : Int,
+                    @SerializedName("consumend") val consumed : Int,
+                    @SerializedName("total") val total : Int,
+                    @SerializedName("id_user") val user : User,
+                    @SerializedName("id_type") val type : TypeCarton)
