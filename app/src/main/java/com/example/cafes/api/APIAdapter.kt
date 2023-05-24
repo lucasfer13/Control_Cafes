@@ -12,7 +12,12 @@ class APIAdapter {
     companion object {
         private val url : String = "http://10.0.1.45:8080/"
         private var service : APIService? = null
-        public fun getApiService() : APIService? {
+
+        /**
+         * Funcion que retorna el servicio de la API
+         * @return Servicio de la API
+         * */
+        fun getApiService() : APIService? {
             //val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor()
             //interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val client : OkHttpClient.Builder = OkHttpClient.Builder()

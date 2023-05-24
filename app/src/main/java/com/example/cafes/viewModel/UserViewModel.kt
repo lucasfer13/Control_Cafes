@@ -1,26 +1,30 @@
 package com.example.cafes.viewModel
 
-import android.app.Application
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.example.cafes.models.User
 import com.example.cafes.repositorios.UserRepository
-
-class UserViewModel : AndroidViewModel {
+/**
+ * Clase que contiene todas las funcionalidades necesarias para la vista enfocado al usuario
+ * */
+class UserViewModel() : ViewModel() {
     private val repository: UserRepository = UserRepository()
 
-    constructor(application: Application) : super(application)
 
+    /**
+     * Funcion para añadir un usuario
+     * @param user - El usuario que se va añadir
+     * */
     fun addUser(user : User) {
-
+        repository.addUser(user)
     }
 
-
-
+    /**
+     * Funcion para recoger todos los usuarios
+     * @return Lista con los todos los usuarios
+     * */
     fun getUsers() : SnapshotStateList<User> {
         repository.getUsers()
         return repository.allUsers
     }
-
-
 }
