@@ -22,9 +22,11 @@ import com.example.cafes.models.TypeCarton
 import com.example.cafes.models.User
 
 val packs = getPacks()
+//var u: User = null
 
 @Composable
-fun Packs(){
+fun Packs(user: User){
+    //u = user
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Cabecera()
         PacksCards()
@@ -62,7 +64,7 @@ fun PackCard(pack: TypeCarton){
 }
 
 fun MakeNewCarton(type: TypeCarton){
-    /*val carton: Carton = Carton(consumed = 0, total = type.total, )
+    /*val carton: Carton = Carton(consumed = 0, total = type.total, user = u, type = type)
     cartonViewModel.addCarton(carton)*/
 }
 
