@@ -1,6 +1,7 @@
 package com.example.cafes.screens
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -117,16 +118,16 @@ fun Body(
 }
 
 @Composable
-fun Cards(nombres: ArrayList<String>, packs: ArrayList<String>){
-    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
+fun Cards(cartons: ArrayList<Carton>, navController: NavController){
+    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         var i: Int = 0
-        while(i < nombres.size) {
+        while(i < cartons.size) {
             if (i%2==0) {
                 Row{
-                    Card(nombres.get(i), packs.get(i))
+                    Card(cartons[i], navController)
                     i++
-                    if (i < nombres.size) {
-                        Card(nombres.get(i), packs.get(i))
+                    if (i < cartons.size) {
+                        Card(cartons[i], navController)
                         i++
                     }
                 }
@@ -136,8 +137,8 @@ fun Cards(nombres: ArrayList<String>, packs: ArrayList<String>){
 }
 
 @Composable
-fun Card(name: String, pack: String){
-    Card( Modifier.padding(10.dp)
+fun Card(carton: Carton, navController: NavController){
+    Card( Modifier.padding(10.dp).clickable { navController.navigate(Screen.Enter.route) }
         //elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row {
@@ -145,12 +146,12 @@ fun Card(name: String, pack: String){
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(
-                    text = name,
+                    text = carton.user.userName,
                     style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "Pack: ${pack} €",
+                    text = "Restantes: ${(carton.total - carton.consumed)} €",
                     style = TextStyle(fontSize = 14.sp)
                 )
             }
@@ -163,8 +164,8 @@ fun Card(name: String, pack: String){
                         painter = painterResource(R.drawable.coffee_icon),
                         contentDescription = "",
                         modifier = Modifier
-                            .height(50.dp)
-                            .width(50.dp))
+                            .height(90.dp)
+                            .width(90.dp))
                 }
             }
         }
@@ -188,7 +189,7 @@ fun Preview() {
             packs.add("5")
             packs.add("10")
             packs.add("20")
-            Cards(nombres, packs)
+            //Cards(nombres, packs)
         }
     }
 }
