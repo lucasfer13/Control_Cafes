@@ -1,14 +1,18 @@
 package com.example.cafes.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +35,25 @@ fun NewCarton(){
 }
 
 @Composable
+fun NewUserButton(){
+    Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = {
+                    navController.navigate(Screen.NewAccount.route)
+                },
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text("Nuevo usuario")
+            }
+        }
+    }
+}
+
+@Composable
 fun UsersCardsList(){
     val u = remember { users }
     LazyVerticalGrid(
@@ -46,6 +69,7 @@ fun UsersCardsList(){
             user -> UserCard(user = u[user])
         }
     }
+    NewUserButton()
 }
 
 @Composable
@@ -63,7 +87,9 @@ fun UserCard(user: User) {
         Text(
             text = user.userName,
             style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
-            modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 15.dp)
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 15.dp)
         )
     }
 }
