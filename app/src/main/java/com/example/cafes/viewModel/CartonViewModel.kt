@@ -23,9 +23,10 @@ class CartonViewModel() : ViewModel() {
     /**
      * Funcion para restar un cafe al carton
      * */
-    fun restarCafeCarton(carton : Carton) {
+    fun restarCafeCarton(carton : Carton, index : Int) {
         carton.consumed++
         repository.modifyCarton(carton)
+        repository.cartons.set(index, carton)
     }
 
     /**

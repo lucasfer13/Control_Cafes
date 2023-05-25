@@ -4,6 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Clase que contiene los datos de un Carton
+ * @author Lucas
+ * */
 data class Carton(@SerializedName("id") val id : Int = 0,
                   @SerializedName("consumend") var consumed : Int = 0,
                   @SerializedName("total") val total : Int = 0,
@@ -15,8 +19,7 @@ data class Carton(@SerializedName("id") val id : Int = 0,
         parcel.readInt(),
         parcel.readParcelable(User::class.java.classLoader)!!,
         parcel.readParcelable(TypeCarton::class.java.classLoader)!!
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

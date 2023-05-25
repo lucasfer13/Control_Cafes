@@ -38,13 +38,13 @@ class UserRepository() {
 
     /**
      * Funcion para añadir un usuario
-     * @param u - Usuario que se va a añadir
+     * @param user Usuario que se va a añadir
      * */
-    fun addUser(u : User) : User? {
-        var user : User? = null
-        APIAdapter.getApiService()?.addUser(u)?.enqueue(object : Callback<User> {
+    fun addUser(user : User) : User? {
+        var userReal : User? = null
+        APIAdapter.getApiService()?.addUser(user)?.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
-                user = response.body()!!
+                userReal = response.body()!!
                 if (user != null) allUsers.add(user!!)
             }
 
@@ -53,7 +53,7 @@ class UserRepository() {
             }
 
         })
-        return user
+        return userReal
     }
 
 }

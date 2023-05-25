@@ -132,16 +132,16 @@ fun Cards(){
         )
     ) {
         items(c.size) {
-            index -> Card(carton = c[index])
+            index -> Card(carton = c[index], index =  index)
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
-        NewCartonButton(navController = navController)
+        NewCartonButton()
     }
 }
 
 @Composable
-fun NewCartonButton(navController: NavController){
+fun NewCartonButton(){
     Row(
         modifier = Modifier.padding(16.dp),
         horizontalArrangement = Arrangement.Center
@@ -158,7 +158,7 @@ fun NewCartonButton(navController: NavController){
 }
 
 @Composable
-fun Card(carton: Carton){
+fun Card(carton: Carton, index : Int){
     Card(
         Modifier
             .padding(10.dp)
@@ -186,7 +186,7 @@ fun Card(carton: Carton){
             Column (
                 modifier = Modifier.padding(16.dp)
             ) {
-                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton) },
+                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton, index) },
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.coffee_icon),

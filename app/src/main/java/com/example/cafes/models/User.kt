@@ -4,6 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Clase que contiene los datos de un Usuario
+ * @author Lucas
+ * */
 data class User(@SerializedName("id") val id: Int = 0,
                 @SerializedName("admin") val esAdmin: Boolean = false,
                 @SerializedName("login") var userName: String = "",

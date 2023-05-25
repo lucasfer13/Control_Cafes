@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Adapter API
+ * @author Lucas
  * */
 class APIAdapter {
     companion object {

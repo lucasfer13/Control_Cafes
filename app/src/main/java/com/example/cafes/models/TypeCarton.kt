@@ -4,6 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Clase que contiene los datos de los tipos de carton
+ * @author Lucas
+ * */
 data class TypeCarton(
                     @SerializedName("id") val id : Int = 0,
                     @SerializedName("total_coffee") val total : Int = 0,
