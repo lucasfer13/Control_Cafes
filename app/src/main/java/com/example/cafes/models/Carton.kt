@@ -13,7 +13,7 @@ data class Carton(@SerializedName("id") val id : Int = 0,
                   @SerializedName("total") val total : Int = 0,
                   @SerializedName("id_user") val user : User = User(),
                   @SerializedName("id_type") val type : TypeCarton = TypeCarton(),
-                  var restantes : Int): Parcelable {
+                  var restantes : Int = 0): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),
