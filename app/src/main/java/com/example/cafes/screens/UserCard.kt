@@ -21,29 +21,32 @@ import com.example.cafes.models.User
 
 val users = getUsers()
 @Composable
-fun NewCarton(navController: NavController){
+fun NewCarton(){
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
         Cabecera()
-        UsersCardsList(navController = navController)
+        UsersCardsList()
     }
 }
 
 @Composable
-fun UsersCardsList(navController: NavController){
+fun UsersCardsList(){
     val u = remember { users }
     LazyColumn() {
         items(u) {
-            user -> UserCard(user = user, navController = navController)
+            user -> UserCard(user = user)
         }
     }
 }
 
 @Composable
-fun UserCard(user: User, navController: NavController) {
+fun UserCard(user: User) {
     Card(
         Modifier
             .padding(10.dp)
-            .clickable { navController.navigate(Screen.SelectPack.route) }
+            .clickable {
+                u = user
+                navController.navigate(Screen.SelectPack.route)
+            }
     ) {
         Text(
             text = user.userName,

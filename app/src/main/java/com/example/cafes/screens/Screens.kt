@@ -1,9 +1,17 @@
 package com.example.cafes.screens
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+
+var navController: NavHostController
+    get() {
+        TODO()
+    } set(n: NavHostController) {
+        navController = n
+    }
 
 sealed class Screen(val route:String){
     object LoginScreen: Screen(route = "logInScreen")
@@ -15,19 +23,19 @@ sealed class Screen(val route:String){
 
 @Composable
 fun CreateAccountScreen(){
-    val navController = rememberNavController()
+    navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = Screen.LoginScreen.route
     ) {
         composable(route = Screen.LoginScreen.route){
-            LogInScreen(navController = navController)
+            LogInScreen()
         }
         composable(route = Screen.NewCarton.route) {
-            NewCarton(navController = navController)
+            NewCarton()
         }
         composable(route = Screen.Enter.route){
-            Main(navController = navController)
+            Main()
         }
         composable(route = Screen.SelectPack.route){
             Packs()

@@ -16,13 +16,13 @@ import com.example.cafes.viewModel.CartonViewModel
 }*/
 
 @Composable
-fun LogInScreen(navController: NavController){
+fun LogInScreen(){
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Cabecera()
         //Body(navController = navController)
-        Cards(navController = navController)
+        Cards()
     }
 }

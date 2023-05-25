@@ -121,7 +121,7 @@ fun Body(
 }
 
 @Composable
-fun Cards(navController: NavController){
+fun Cards(){
     val c = remember { cartons }
     LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
         contentPadding = PaddingValues(
@@ -132,7 +132,7 @@ fun Cards(navController: NavController){
         )
     ) {
         items(c.size) {
-            index -> Card(carton = c[index], navController = navController)
+            index -> Card(carton = c[index])
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -158,7 +158,7 @@ fun NewCartonButton(navController: NavController){
 }
 
 @Composable
-fun Card(carton: Carton, navController: NavController){
+fun Card(carton: Carton){
     Card(
         Modifier
             .padding(10.dp)
