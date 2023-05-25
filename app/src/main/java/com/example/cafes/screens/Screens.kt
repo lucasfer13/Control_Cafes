@@ -6,12 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
-var navController: NavHostController
-    get() {
-        TODO()
-    } set(n: NavHostController) {
-        navController = n
-    }
+lateinit var navController: NavHostController
 
 sealed class Screen(val route:String){
     object LoginScreen: Screen(route = "logInScreen")

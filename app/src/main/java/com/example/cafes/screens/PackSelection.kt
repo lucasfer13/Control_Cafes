@@ -2,9 +2,12 @@ package com.example.cafes.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -35,9 +38,17 @@ fun Packs(){
 @Composable
 fun PacksCards(){
     val p = remember { packs }
-    LazyColumn() {
-        items(p){
-            type -> PackCard(pack = type)
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(128.dp),
+        contentPadding = PaddingValues(
+            start = 12.dp,
+            top = 16.dp,
+            end = 12.dp,
+            bottom = 16.dp
+        )
+    ) {
+        items(p.size){
+            type -> PackCard(pack = p[type])
         }
     }
 }
