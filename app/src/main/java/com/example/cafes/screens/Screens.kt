@@ -29,5 +29,8 @@ fun CreateAccountScreen(){
         composable(route = Screen.Enter.route){
             Main(navController = navController)
         }
+        composable(route = Screen.SelectPack.route){
+            Packs()
+        }
     }
 }
