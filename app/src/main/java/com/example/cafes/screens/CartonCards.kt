@@ -4,13 +4,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -25,7 +26,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,7 +38,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.cafes.R
 import com.example.cafes.models.Carton
 import com.example.cafes.ui.theme.CafesTheme
@@ -124,9 +123,16 @@ fun Body(
 @Composable
 fun Cards(navController: NavController){
     val c = remember { cartons }
-    LazyColumn() {
-        items(c) {
-            carton -> CartonCard(carton = carton, navController = navController)
+    LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
+        contentPadding = PaddingValues(
+            start = 12.dp,
+            top = 16.dp,
+            end = 12.dp,
+            bottom = 16.dp
+        )
+    ) {
+        items(c.size) {
+            index -> Card(carton = c[index], navController = navController)
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -152,11 +158,15 @@ fun NewCartonButton(navController: NavController){
 }
 
 @Composable
-fun CartonCard(carton: Carton, navController: NavController){
+fun Card(carton: Carton, navController: NavController){
     Card(
         Modifier
             .padding(10.dp)
-            .clickable { navController.navigate(Screen.Enter.route) }
+            .clickable
+            {
+                navController.currentBackStackEntry?.arguments?.putParcelable("CARTON", carton)
+                navController.navigate(Screen.Enter.route)
+            }
         //elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row {
@@ -176,7 +186,7 @@ fun CartonCard(carton: Carton, navController: NavController){
             Column (
                 modifier = Modifier.padding(16.dp)
             ) {
-                IconButton(onClick = { /*TODO*/ },
+                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton) },
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.coffee_icon),

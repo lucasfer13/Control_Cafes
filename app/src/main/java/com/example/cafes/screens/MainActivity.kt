@@ -3,7 +3,6 @@ package com.example.cafes.screens
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,9 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,8 +28,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.cafes.R
-import com.example.cafes.repositorios.UserRepository
+import com.example.cafes.models.Carton
 import com.example.cafes.ui.theme.CafesTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +43,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Main()
                 }
             }
         }
@@ -53,13 +50,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Main(){
+fun Main(navController: NavController){
+    val carton : Carton? = navController.previousBackStackEntry?.arguments?.getParcelable("CARTON")
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         MadeBy()
-        PriceDate()
+        if (carton != null) PriceDate(carton!!)
         MakeACoffee()
         ExitApp()
     }
@@ -72,10 +70,6 @@ fun MadeBy(){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        /*Image(
-            painter = painterResource(id = R.drawable.top_screen),
-            contentDescription = ""
-        )*/
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.Top
@@ -100,7 +94,7 @@ fun MadeBy(){
 }
 
 @Composable
-fun PriceDate(){
+fun PriceDate(c : Carton){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -110,12 +104,12 @@ fun PriceDate(){
     )
     {
         Text(
-            text = "Pack",
+            text = c.type.price.toString()+" €",
             modifier = Modifier
                 .padding(start = 100.dp)
         )
         Text(
-            text = "Totales",
+            text = c.total.toString(),
             modifier = Modifier
                 .padding(start = 100.dp)
                 .padding(top = 40.dp)
@@ -134,7 +128,7 @@ fun PriceDate(){
                 .padding(end = 100.dp)
         )
         Text(
-            text = "Restantes",
+            text = cartonViewModel.getCafesRestantes(c).toString(),
             modifier = Modifier
                 .padding(end = 100.dp)
                 .padding(top = 40.dp)
@@ -189,7 +183,6 @@ fun PrevItemCarton() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Main()
         }
     }
 }

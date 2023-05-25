@@ -27,7 +27,7 @@ fun CreateAccountScreen(){
             NewCarton(navController = navController)
         }
         composable(route = Screen.Enter.route){
-            Main()
+            Main(navController = navController)
         }
     }
 }

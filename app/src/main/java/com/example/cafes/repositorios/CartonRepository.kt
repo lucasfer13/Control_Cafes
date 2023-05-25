@@ -58,7 +58,9 @@ class CartonRepository() {
      * */
     fun modifyCarton(c : Carton) {
         APIAdapter.getApiService()?.modifyCarton(c.id, c)?.enqueue(object : Callback<Carton> {
-            override fun onResponse(call: Call<Carton>, response: Response<Carton>) {}
+            override fun onResponse(call: Call<Carton>, response: Response<Carton>) {
+                Log.d("CARTON_REPOSITORY", response.body()!!.toString())
+            }
 
             override fun onFailure(call: Call<Carton>, t: Throwable) {
                 Log.d("CARTON_REPOSITORY", t.message!!)
