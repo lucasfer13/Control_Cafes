@@ -1,5 +1,6 @@
 package com.example.cafes.screens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,8 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -26,45 +27,58 @@ import androidx.compose.ui.unit.sp
 import com.example.cafes.models.User
 @Composable
 fun NewCarton(){
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-        Cabecera()
+    Box(Modifier.fillMaxSize()){
+        //Cabecera()
         UsersCardsList()
+        //NewUserButton()
     }
 }
 
 @Composable
 fun NewUserButton(){
-    Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Button(
-                onClick = {
-                    navController.navigate(Screen.NewAccount.route)
-                },
-                modifier = Modifier.padding(8.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ){
+        Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                horizontalArrangement = Arrangement.Center
             ) {
-                Text("Nuevo usuario")
+                Button(
+                    onClick = {
+                        navController.navigate(Screen.NewAccount.route)
+                    },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text("Nuevo usuario")
+                }
             }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun UsersCardsList(){
     val u = remember { users }
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(128.dp),
-        contentPadding = PaddingValues(
-            start = 12.dp,
-            top = 16.dp,
-            end = 12.dp,
-            bottom = 16.dp
-        )
-    ) {
-        items(u.size) {
-            user -> UserCard(user = u[user])
+    val listState = rememberLazyListState()
+    Box(){
+        LazyColumn(
+            contentPadding = PaddingValues(
+                start = 12.dp,
+                top = 16.dp,
+                end = 12.dp,
+                bottom = 16.dp
+            ),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            state = listState
+        ) {
+            stickyHeader { Cabecera() }
+            items(u.size) {
+                    user -> UserCard(user = u[user])
+            }
         }
     }
     NewUserButton()
@@ -75,8 +89,8 @@ fun UserCard(user: User) {
     Card(
         Modifier
             .padding(10.dp)
+            .width(300.dp)
             .height(60.dp)
-            .width(60.dp)
             .clickable {
                 u = user
                 navController.navigate(Screen.SelectPack.route)

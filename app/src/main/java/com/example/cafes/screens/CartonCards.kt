@@ -24,6 +24,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -37,7 +38,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cafes.R
 import com.example.cafes.models.Carton
@@ -127,10 +127,10 @@ fun Cards(){
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
             contentPadding = PaddingValues(
-                start = 12.dp,
-                top = 16.dp,
-                end = 12.dp,
-                bottom = 16.dp
+                start = 10.dp,
+                top = 14.dp,
+                end = 10.dp,
+                bottom = 14.dp
             )
         ) {
             items(c.size) {
@@ -162,8 +162,12 @@ fun NewCartonButton(){
 
 @Composable
 fun CartonCard(carton: Carton){
-    cartonViewModel.getCafesRestantes(carton)
     val ccc = remember { mutableStateOf(carton.restantes) }
+
+    LaunchedEffect(key1 = carton) {
+        cartonViewModel.getCafesRestantes(carton)
+        ccc.value = carton.restantes
+    }
     Card(
         Modifier
             .padding(10.dp)
@@ -184,7 +188,7 @@ fun CartonCard(carton: Carton){
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "Restantes: ${ccc.value}",
+                    text = "${ccc.value} cafés",
                     style = TextStyle(fontSize = 14.sp)
                 )
             }

@@ -21,6 +21,7 @@ class UserRepository() {
      * Funcion para llenar la lista de los usuarios
      * */
     fun getUsers() {
+        allUsers.clear()
         val api: APIService? = APIAdapter.getApiService()
         var call : Call<List<User>> = api!!.users()!!
         call.enqueue(object: Callback<List<User>> {
@@ -61,7 +62,7 @@ class UserRepository() {
         APIAdapter.getApiService()?.addUser(user)?.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 userReal = response.body()!!
-                if (user != null) allUsers.add(user!!)
+                allUsers.add(userReal!!)
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {

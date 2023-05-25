@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 lateinit var navController: NavHostController
-val users = getUsers()
+var users = getUsers()
 
 sealed class Screen(val route:String){
     object LoginScreen: Screen(route = "logInScreen")

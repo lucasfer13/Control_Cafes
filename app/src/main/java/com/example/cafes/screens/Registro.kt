@@ -59,6 +59,8 @@ fun SignInScreen(){
 
 fun onSignInClick(name: String) {
     userViewModel.addUser(User(userName = name))
+    users.clear()
+    users = getUsers()
     navController.navigate(Screen.NewCarton.route)
 }
 

@@ -84,14 +84,14 @@ fun PriceDate(){
     )
     {
         Text(
-            text = cartonUser.type.price.toString()+" €",
+            text = "Pack: ${cartonUser.type.price} €",
             modifier = Modifier
-                .padding(start = 100.dp)
+                .padding(start = 50.dp)
         )
         Text(
-            text = cartonUser.total.toString(),
+            text = "Totales: ${cartonUser.total}",
             modifier = Modifier
-                .padding(start = 100.dp)
+                .padding(start = 50.dp)
                 .padding(top = 40.dp)
         )
     }
@@ -105,14 +105,14 @@ fun PriceDate(){
         Text(
             text = "Date",
             modifier = Modifier
-                .padding(end = 100.dp)
+                .padding(end = 50.dp)
         )
-        /*Text(
-            text = cartonViewModel.getCafesRestantes(c).toString(),
+        Text(
+            text = "Restantes: ${cartonUser.restantes}",
             modifier = Modifier
-                .padding(end = 100.dp)
+                .padding(end = 50.dp)
                 .padding(top = 40.dp)
-        )*/
+        )
     }
 }
 
