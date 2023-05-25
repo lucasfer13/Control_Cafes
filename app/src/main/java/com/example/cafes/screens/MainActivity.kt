@@ -107,12 +107,12 @@ fun PriceDate(c : Carton){
             modifier = Modifier
                 .padding(end = 100.dp)
         )
-        Text(
+        /*Text(
             text = cartonViewModel.getCafesRestantes(c).toString(),
             modifier = Modifier
                 .padding(end = 100.dp)
                 .padding(top = 40.dp)
-        )
+        )*/
     }
 }
 

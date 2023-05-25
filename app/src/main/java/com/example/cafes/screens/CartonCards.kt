@@ -132,7 +132,7 @@ fun Cards(){
         )
     ) {
         items(c.size) {
-            index -> Card(carton = c[index], index =  index)
+            index -> if (c[index].total > c[index].consumed) CartonCard(carton = c[index], index =  index)
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -158,7 +158,8 @@ fun NewCartonButton(){
 }
 
 @Composable
-fun Card(carton: Carton, index : Int){
+fun CartonCard(carton: Carton, index : Int){
+    val ccc = remember { carton }
     Card(
         Modifier
             .padding(10.dp)
@@ -179,7 +180,7 @@ fun Card(carton: Carton, index : Int){
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "Restantes: ${cartonViewModel.getCafesRestantes(carton)}",
+                    text = "Restantes: ${cartonViewModel.getCafesRestantes(ccc.total, ccc.consumed)}",
                     style = TextStyle(fontSize = 14.sp)
                 )
             }

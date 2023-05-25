@@ -33,8 +33,8 @@ class CartonViewModel() : ViewModel() {
      * Funcion para saber los cafes restantes de un carton
      * @return Los cafes restantes del carton
      * */
-    fun getCafesRestantes(carton : Carton) : Int {
-        return carton.total - carton.consumed
+    fun getCafesRestantes(total: Int, consumed: Int) : Int {
+        return total - consumed
     }
 
     /**
