@@ -29,15 +29,15 @@ import com.example.cafes.R
 import com.example.cafes.models.Carton
 import com.example.cafes.ui.theme.CafesTheme
 
+lateinit var cartonUser: Carton
 @Composable
 fun Main(){
-    val carton : Carton? = navController.previousBackStackEntry?.arguments?.getParcelable("CARTON")
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         MadeBy()
-        if (carton != null) PriceDate(carton!!)
+        PriceDate()
         MakeACoffee()
         ExitApp()
     }
@@ -74,7 +74,7 @@ fun MadeBy(){
 }
 
 @Composable
-fun PriceDate(c : Carton){
+fun PriceDate(){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -84,12 +84,12 @@ fun PriceDate(c : Carton){
     )
     {
         Text(
-            text = c.type.price.toString()+" €",
+            text = cartonUser.type.price.toString()+" €",
             modifier = Modifier
                 .padding(start = 100.dp)
         )
         Text(
-            text = c.total.toString(),
+            text = cartonUser.total.toString(),
             modifier = Modifier
                 .padding(start = 100.dp)
                 .padding(top = 40.dp)

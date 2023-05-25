@@ -134,7 +134,7 @@ fun Cards(){
             )
         ) {
             items(c.size) {
-                    index -> if (c[index].total > c[index].consumed) CartonCard(carton = c[index], index =  index)
+                    index -> CartonCard(carton = c[index])
             }
         }
     }
@@ -161,7 +161,7 @@ fun NewCartonButton(){
 }
 
 @Composable
-fun CartonCard(carton: Carton, index : Int){
+fun CartonCard(carton: Carton){
     cartonViewModel.getCafesRestantes(carton)
     val ccc = remember { mutableStateOf(carton.restantes) }
     Card(
@@ -169,7 +169,7 @@ fun CartonCard(carton: Carton, index : Int){
             .padding(10.dp)
             .clickable
             {
-                navController.currentBackStackEntry?.arguments?.putParcelable("CARTON", carton)
+                cartonUser = carton
                 navController.navigate(Screen.Enter.route)
             }
         //elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -191,7 +191,7 @@ fun CartonCard(carton: Carton, index : Int){
             Column (
                 modifier = Modifier.padding(16.dp)
             ) {
-                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton, index) },
+                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton) },
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.coffee_icon),
