@@ -5,9 +5,9 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class TypeCarton(
-                    @SerializedName("id") val id : Int,
-                    @SerializedName("total_coffee") val total : Int,
-                    @SerializedName("price") val price : Double) : Parcelable {
+                    @SerializedName("id") val id : Int = 0,
+                    @SerializedName("total_coffee") val total : Int = 0,
+                    @SerializedName("price") val price : Double = 0.0) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),

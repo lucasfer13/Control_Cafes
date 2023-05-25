@@ -4,11 +4,11 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class Carton(@SerializedName("id") val id : Int,
-                  @SerializedName("consumend") var consumed : Int,
-                  @SerializedName("total") val total : Int,
-                  @SerializedName("id_user") val user : User,
-                  @SerializedName("id_type") val type : TypeCarton) : Parcelable {
+data class Carton(@SerializedName("id") val id : Int = 0,
+                  @SerializedName("consumend") var consumed : Int = 0,
+                  @SerializedName("total") val total : Int = 0,
+                  @SerializedName("id_user") val user : User = User(),
+                  @SerializedName("id_type") val type : TypeCarton = TypeCarton()): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),
