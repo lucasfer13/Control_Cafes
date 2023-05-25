@@ -10,7 +10,6 @@ import com.example.cafes.repositorios.UserRepository
 class UserViewModel() : ViewModel() {
     private val repository: UserRepository = UserRepository()
 
-
     /**
      * Funcion para añadir un usuario
      * @param user - El usuario que se va añadir
@@ -28,7 +27,11 @@ class UserViewModel() : ViewModel() {
         return repository.allUsers
     }
 
+    /**
+     * Funcion para modificar un usuario
+     * @param user Usuario a modificar
+     * */
     fun modificarUsuario(user: User) {
-
+        repository.updateUser(user)
     }
 }

@@ -25,6 +25,7 @@ class CartonViewModel() : ViewModel() {
      * */
     fun restarCafeCarton(carton : Carton, index : Int) {
         carton.consumed++
+        carton.restantes--
         repository.modifyCarton(carton)
         repository.cartons.set(index, carton)
     }
@@ -33,8 +34,9 @@ class CartonViewModel() : ViewModel() {
      * Funcion para saber los cafes restantes de un carton
      * @return Los cafes restantes del carton
      * */
-    fun getCafesRestantes(total: Int, consumed: Int) : Int {
-        return total - consumed
+    fun getCafesRestantes(carton : Carton) : Int {
+        carton.restantes = carton.total - carton.consumed
+        return carton.restantes
     }
 
     /**

@@ -36,8 +36,20 @@ class UserRepository() {
         })
     }
 
-    fun updateUser() {
+    /**
+     * Funcion que actualiza un usuario
+     * @param user Usuario que se va a modificar
+     * */
+    fun updateUser(user : User) {
+        APIAdapter.getApiService()?.updateUser(user.id, user)?.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+            }
 
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Log.d("USER_REPOSITORY", t.message!!)
+            }
+
+        })
     }
 
     /**

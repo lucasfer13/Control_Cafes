@@ -12,13 +12,15 @@ data class Carton(@SerializedName("id") val id : Int = 0,
                   @SerializedName("consumed") var consumed : Int = 0,
                   @SerializedName("total") val total : Int = 0,
                   @SerializedName("id_user") val user : User = User(),
-                  @SerializedName("id_type") val type : TypeCarton = TypeCarton()): Parcelable {
+                  @SerializedName("id_type") val type : TypeCarton = TypeCarton(),
+                  var restantes : Int): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readParcelable(User::class.java.classLoader)!!,
-        parcel.readParcelable(TypeCarton::class.java.classLoader)!!
+        parcel.readParcelable(TypeCarton::class.java.classLoader)!!,
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -27,6 +29,7 @@ data class Carton(@SerializedName("id") val id : Int = 0,
         parcel.writeInt(total)
         parcel.writeParcelable(user, flags)
         parcel.writeParcelable(type, flags)
+        parcel.writeInt(restantes)
     }
 
     override fun describeContents(): Int {
