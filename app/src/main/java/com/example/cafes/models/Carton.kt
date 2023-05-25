@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @author Lucas
  * */
 data class Carton(@SerializedName("id") val id : Int = 0,
-                  @SerializedName("consumend") var consumed : Int = 0,
+                  @SerializedName("consumed") var consumed : Int = 0,
                   @SerializedName("total") val total : Int = 0,
                   @SerializedName("id_user") val user : User = User(),
                   @SerializedName("id_type") val type : TypeCarton = TypeCarton()): Parcelable {

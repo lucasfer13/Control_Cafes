@@ -33,6 +33,8 @@ interface APIService {
     @POST("api/user")
     fun addUser(@Body user : User) : Call<User>
 
+    @PUT()
+
 
     // Funciones para la gestion de cartones
 
@@ -57,7 +59,7 @@ interface APIService {
      * @param c El carton a modificar
      * @return Llamada con los datos del carton
      * */
-    @PUT("api/carton/{id}/")
+    @PUT("api/carton/{id}")
     fun modifyCarton(@Path("id") id : Int, @Body carton : Carton) : Call<Carton>
 
     // Funciones para la gestion de tipos de carton
