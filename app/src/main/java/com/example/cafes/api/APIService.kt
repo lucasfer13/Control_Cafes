@@ -33,7 +33,14 @@ interface APIService {
     @POST("api/user")
     fun addUser(@Body user : User) : Call<User>
 
-    @PUT()
+    /**
+     * Funcion para modificar un usuario
+     * @param id Id del usuario
+     * @param user El usuario a modificar
+     * @return Retorna la llamada con el usuario modificado
+     * */
+    @PUT("api/user/{id}")
+    fun updateUser(@Path("id") id : Int, user : User) : Call<User>
 
 
     // Funciones para la gestion de cartones

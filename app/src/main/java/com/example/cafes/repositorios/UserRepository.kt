@@ -36,6 +36,10 @@ class UserRepository() {
         })
     }
 
+    fun updateUser() {
+
+    }
+
     /**
      * Funcion para añadir un usuario
      * @param user Usuario que se va a añadir
