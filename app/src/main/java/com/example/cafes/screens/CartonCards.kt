@@ -37,6 +37,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cafes.R
 import com.example.cafes.models.Carton
@@ -123,16 +124,18 @@ fun Body(
 @Composable
 fun Cards(){
     val c = remember { cartons }
-    LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
-        contentPadding = PaddingValues(
-            start = 12.dp,
-            top = 16.dp,
-            end = 12.dp,
-            bottom = 16.dp
-        )
-    ) {
-        items(c.size) {
-            index -> if (c[index].total > c[index].consumed) CartonCard(carton = c[index], index =  index)
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
+            contentPadding = PaddingValues(
+                start = 12.dp,
+                top = 16.dp,
+                end = 12.dp,
+                bottom = 16.dp
+            )
+        ) {
+            items(c.size) {
+                    index -> if (c[index].total > c[index].consumed) CartonCard(carton = c[index], index =  index)
+            }
         }
     }
     Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -159,7 +162,8 @@ fun NewCartonButton(){
 
 @Composable
 fun CartonCard(carton: Carton, index : Int){
-    val ccc = remember { carton }
+    cartonViewModel.getCafesRestantes(carton)
+    val ccc = remember { mutableStateOf(carton.restantes) }
     Card(
         Modifier
             .padding(10.dp)
@@ -180,7 +184,7 @@ fun CartonCard(carton: Carton, index : Int){
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "Restantes: ${cartonViewModel.getCafesRestantes(ccc.total, ccc.consumed)}",
+                    text = "Restantes: ${ccc.value}",
                     style = TextStyle(fontSize = 14.sp)
                 )
             }

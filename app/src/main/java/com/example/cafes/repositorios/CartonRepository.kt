@@ -22,7 +22,7 @@ class CartonRepository() {
     fun getCartons() {
         APIAdapter.getApiService()?.cartons()?.enqueue(object : Callback<List<Carton>> {
             override fun onResponse(call: Call<List<Carton>>, response: Response<List<Carton>>) {
-                cartons.addAll(ArrayList(response.body()?.toList()))
+                cartons.addAll(ArrayList(response.body()?.toList()?.filter { it -> it.total > it.consumed }))
             }
 
             override fun onFailure(call: Call<List<Carton>>, t: Throwable) {

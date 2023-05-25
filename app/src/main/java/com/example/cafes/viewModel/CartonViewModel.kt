@@ -4,6 +4,8 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.example.cafes.models.Carton
 import com.example.cafes.repositorios.CartonRepository
+import com.example.cafes.screens.cartonViewModel
+
 /**
  * Classe que contiene las funciones necesarias para la vista
  * @author Lucas
@@ -27,7 +29,7 @@ class CartonViewModel() : ViewModel() {
         carton.consumed++
         carton.restantes--
         repository.modifyCarton(carton)
-        repository.cartons.set(index, carton)
+        if (carton.total <= carton.consumed) cartonViewModel.repository.cartons.remove(carton)
     }
 
     /**
