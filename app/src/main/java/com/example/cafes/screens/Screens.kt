@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 lateinit var navController: NavHostController
+val users = getUsers()
 
 sealed class Screen(val route:String){
     object LoginScreen: Screen(route = "logInScreen")
@@ -14,6 +15,8 @@ sealed class Screen(val route:String){
     object Enter: Screen(route = "enterApp")
     object NewCarton: Screen(route = "newCarton")
     object SelectPack: Screen(route = "selectPack")
+    object PassScreen: Screen(route = "passScreen")
+    object ChangePasswordScreen: Screen(route = "changePasswordScreen")
 }
 
 @Composable
@@ -37,6 +40,12 @@ fun CreateAccountScreen(){
         }
         composable(route = Screen.NewAccount.route){
             SignInScreenLogo()
+        }
+        composable(route = Screen.PassScreen.route){
+            PasswordScreen()
+        }
+        composable(route = Screen.ChangePasswordScreen.route){
+            ChangePasswordScreen()
         }
     }
 }

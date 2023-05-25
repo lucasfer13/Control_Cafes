@@ -27,4 +27,8 @@ class UserViewModel() : ViewModel() {
         repository.getUsers()
         return repository.allUsers
     }
+
+    fun modificarUsuario(user: User) {
+
+    }
 }

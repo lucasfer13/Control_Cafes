@@ -22,7 +22,6 @@ fun LogInScreen(){
         contentAlignment = Alignment.Center
     ) {
         Cabecera()
-        //Body(navController = navController)
         Cards()
     }
 }

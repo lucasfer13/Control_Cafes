@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
 data class User(@SerializedName("id") val id: Int = 0,
                 @SerializedName("admin") val esAdmin: Boolean = false,
                 @SerializedName("login") var userName: String = "",
-                @SerializedName("password") val password: String = ""
+                @SerializedName("password") var password: String = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

@@ -148,7 +148,7 @@ fun NewCartonButton(){
     ) {
         Button(
             onClick = {
-                navController.navigate(Screen.NewCarton.route)
+                navController.navigate(Screen.PassScreen.route)
             },
             modifier = Modifier.padding(8.dp)
         ) {
