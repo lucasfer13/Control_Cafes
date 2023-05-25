@@ -35,5 +35,8 @@ fun CreateAccountScreen(){
         composable(route = Screen.SelectPack.route){
             Packs()
         }
+        composable(route = Screen.NewAccount.route){
+            SignInScreenLogo()
+        }
     }
 }
