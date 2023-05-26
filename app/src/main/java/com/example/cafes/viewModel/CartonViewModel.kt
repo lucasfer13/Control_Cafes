@@ -4,7 +4,9 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.example.cafes.models.Carton
 import com.example.cafes.repositorios.CartonRepository
+import com.example.cafes.screens.Screen
 import com.example.cafes.screens.cartonViewModel
+import com.example.cafes.screens.navController
 
 /**
  * Classe que contiene las funciones necesarias para la vista
@@ -29,7 +31,10 @@ class CartonViewModel() : ViewModel() {
         carton.consumed++
         carton.restantes--
         repository.modifyCarton(carton)
-        if (carton.total <= carton.consumed) cartonViewModel.repository.cartons.remove(carton)
+        if (carton.total <= carton.consumed) {
+            cartonViewModel.repository.cartons.remove(carton)
+            navController.navigate(Screen.LoginScreen.route)
+        }
     }
 
     /**

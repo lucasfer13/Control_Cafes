@@ -128,7 +128,7 @@ fun Cards(){
     val c = remember { cartons }
     Cabecera()
     Box(Modifier.padding(top = 90.dp, bottom = 70.dp)) {
-        LazyVerticalGrid(columns = GridCells.Adaptive(132.dp),
+        LazyVerticalGrid(columns = GridCells.Adaptive(150.dp),
             contentPadding = PaddingValues(
                 start = 10.dp,
                 top = 14.dp,
@@ -175,7 +175,7 @@ fun CartonCard(carton: Carton){
     val context = LocalContext.current
     Card(
         Modifier
-            .padding(10.dp)
+            .padding(10.dp).width(120.dp)
             .clickable
             {
                 cartonUser = carton
@@ -185,7 +185,7 @@ fun CartonCard(carton: Carton){
     ) {
         Row {
             Column(
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(12.dp).width(70.dp)
             ) {
                 Text(
                     text = carton.user.userName,
@@ -198,7 +198,7 @@ fun CartonCard(carton: Carton){
                 )
             }
             Column (
-                Modifier.padding(12.dp)
+                Modifier.padding(12.dp).width(50.dp)
             ) {
                 IconButton(onClick = { cartonViewModel.restarCafeCarton(carton)
                                         restante.value = carton.restantes.toString()
@@ -208,8 +208,8 @@ fun CartonCard(carton: Carton){
                         painter = painterResource(R.drawable.coffee_icon),
                         contentDescription = "",
                         modifier = Modifier
-                            .height(90.dp)
-                            .width(90.dp))
+                            .height(50.dp)
+                            .width(50.dp))
                 }
             }
         }

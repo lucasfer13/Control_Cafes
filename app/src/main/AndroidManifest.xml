@@ -30,12 +30,6 @@
             android:label="@string/title_activity_users"
             android:theme="@style/Theme.Cafes" />
         <activity
-            android:name=".screens.Registro"
-            android:exported="false"
-            android:label="@string/title_activity_registro"
-            android:theme="@style/Theme.Cafes">
-        </activity>
-        <activity
             android:name=".screens.DetailCarton"
             android:exported="false"
             android:label="@string/title_activity_detail_carton"
@@ -51,12 +45,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".screens.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Cafes">
         </activity>
     </application>
 
