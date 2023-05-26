@@ -10,7 +10,6 @@ fun LogInScreen(){
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
-        Cabecera()
         Cards()
     }
 }

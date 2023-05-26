@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -125,8 +126,9 @@ fun Body(
 @Composable
 fun Cards(){
     val c = remember { cartons }
-    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        LazyVerticalGrid(columns = GridCells.Adaptive(128.dp),
+    Cabecera()
+    Box(Modifier.padding(top = 90.dp, bottom = 70.dp)) {
+        LazyVerticalGrid(columns = GridCells.Adaptive(132.dp),
             contentPadding = PaddingValues(
                 start = 10.dp,
                 top = 14.dp,
@@ -139,24 +141,29 @@ fun Cards(){
             }
         }
     }
-    Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
-        NewCartonButton()
-    }
+    NewCartonButton()
 }
 
 @Composable
 fun NewCartonButton(){
-    Row(
-        modifier = Modifier.padding(16.dp),
-        horizontalArrangement = Arrangement.Center
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp)
     ) {
-        Button(
-            onClick = {
-                navController.navigate(Screen.PassScreen.route)
-            },
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text("Nuevo cartón")
+        Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
+            Row(
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    onClick = {
+                        navController.navigate(Screen.PassScreen.route)
+                    },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text("Nuevo cartón")
+                }
+            }
         }
     }
 }
@@ -178,7 +185,7 @@ fun CartonCard(carton: Carton){
     ) {
         Row {
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(12.dp)
             ) {
                 Text(
                     text = carton.user.userName,
@@ -191,7 +198,7 @@ fun CartonCard(carton: Carton){
                 )
             }
             Column (
-                modifier = Modifier.padding(16.dp)
+                Modifier.padding(12.dp)
             ) {
                 IconButton(onClick = { cartonViewModel.restarCafeCarton(carton)
                                         restante.value = carton.restantes.toString()
