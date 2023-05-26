@@ -1,5 +1,6 @@
 package com.example.cafes.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,12 +25,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -162,12 +163,9 @@ fun NewCartonButton(){
 
 @Composable
 fun CartonCard(carton: Carton){
-    val ccc = remember { mutableStateOf(carton.restantes) }
-
-    LaunchedEffect(key1 = carton) {
-        cartonViewModel.getCafesRestantes(carton)
-        ccc.value = carton.restantes
-    }
+    cartonViewModel.getCafesRestantes(carton)
+    val restante = remember { mutableStateOf(carton.restantes.toString()) }
+    val context = LocalContext.current
     Card(
         Modifier
             .padding(10.dp)
@@ -188,14 +186,16 @@ fun CartonCard(carton: Carton){
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "${ccc.value} cafés",
+                    text = "${restante.value} cafés",
                     style = TextStyle(fontSize = 14.sp)
                 )
             }
             Column (
                 modifier = Modifier.padding(16.dp)
             ) {
-                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton) },
+                IconButton(onClick = { cartonViewModel.restarCafeCarton(carton)
+                                        restante.value = carton.restantes.toString()
+                                        Toast.makeText(context, R.string.toast_cafe, Toast.LENGTH_SHORT).show()},
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.coffee_icon),

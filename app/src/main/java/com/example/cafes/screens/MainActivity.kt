@@ -1,5 +1,6 @@
 package com.example.cafes.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,15 +11,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,13 +37,14 @@ import com.example.cafes.ui.theme.CafesTheme
 lateinit var cartonUser: Carton
 @Composable
 fun Main(){
+    val restantes = remember { mutableStateOf(cartonUser.restantes.toString()) }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         MadeBy()
-        PriceDate()
-        MakeACoffee()
+        PriceDate(restantes)
+        MakeACoffee(restantes)
         ExitApp()
     }
 }
@@ -74,7 +80,7 @@ fun MadeBy(){
 }
 
 @Composable
-fun PriceDate(){
+fun PriceDate(restantes : MutableState<String>){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -108,7 +114,7 @@ fun PriceDate(){
                 .padding(end = 50.dp)
         )
         Text(
-            text = "Restantes: ${cartonUser.restantes}",
+            text = "Restantes: ${restantes.value}",
             modifier = Modifier
                 .padding(end = 50.dp)
                 .padding(top = 40.dp)
@@ -117,9 +123,14 @@ fun PriceDate(){
 }
 
 @Composable
-fun MakeACoffee(){
+fun MakeACoffee(restantes : MutableState<String>){
+    val context = LocalContext.current
     Button(
         onClick = {
+            cartonViewModel.restarCafeCarton(cartonUser)
+            restantes.value = cartonUser.restantes.toString()
+            if (cartonUser.restantes == 0) navController.navigate(Screen.LoginScreen.route)
+            Toast.makeText(context, R.string.toast_cafe, Toast.LENGTH_SHORT).show()
         }
     ) {
         Icon(
@@ -141,10 +152,10 @@ fun ExitApp(){
         verticalArrangement = Arrangement.Bottom
     ) {
         Button(
-            onClick = {}
+            onClick = { navController.navigate(Screen.LoginScreen.route)}
         ) {
             Icon(
-                Icons.Filled.Lock,
+                Icons.Filled.ArrowBack,
                 contentDescription = "Log out",
                 modifier = Modifier
                     .height(100.dp)
