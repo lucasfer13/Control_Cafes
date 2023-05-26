@@ -39,18 +39,17 @@ fun NewUserButton(){
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(8.dp)
     ){
         Column(Modifier.fillMaxSize(), verticalArrangement =  Arrangement.Bottom, horizontalAlignment = Alignment.CenterHorizontally) {
             Row(
-                modifier = Modifier.padding(16.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
                 Button(
                     onClick = {
                         navController.navigate(Screen.NewAccount.route)
                     },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(0.dp)
                 ) {
                     Text("Nuevo usuario")
                 }
@@ -64,7 +63,11 @@ fun NewUserButton(){
 fun UsersCardsList(){
     val u = remember { users }
     val listState = rememberLazyListState()
-    Box(){
+    Cabecera()
+    Box(
+        modifier = Modifier
+            .padding(top = 90.dp, bottom = 70.dp)
+    ){
         LazyColumn(
             contentPadding = PaddingValues(
                 start = 12.dp,
@@ -75,7 +78,7 @@ fun UsersCardsList(){
             horizontalAlignment = Alignment.CenterHorizontally,
             state = listState
         ) {
-            stickyHeader { Cabecera() }
+            stickyHeader {  }
             items(u.size) {
                     user -> UserCard(user = u[user])
             }
