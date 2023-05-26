@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -68,7 +70,25 @@ fun UsersCardsList(){
         modifier = Modifier
             .padding(top = 90.dp, bottom = 70.dp)
     ){
-        LazyColumn(
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(128.dp),
+            contentPadding = PaddingValues(
+                start = 12.dp,
+                top = 16.dp,
+                end = 12.dp,
+                bottom = 16.dp
+            ),
+        ) {
+            items(u.size) {
+                    user -> UserCard(user = u[user])
+            }
+        }
+    }
+    NewUserButton()
+}
+
+/*
+LazyColumn(
             contentPadding = PaddingValues(
                 start = 12.dp,
                 top = 16.dp,
@@ -78,21 +98,18 @@ fun UsersCardsList(){
             horizontalAlignment = Alignment.CenterHorizontally,
             state = listState
         ) {
-            stickyHeader {  }
             items(u.size) {
                     user -> UserCard(user = u[user])
             }
         }
-    }
-    NewUserButton()
-}
+ */
 
 @Composable
 fun UserCard(user: User) {
     Card(
         Modifier
             .padding(10.dp)
-            .width(300.dp)
+            .width(150.dp)
             .height(60.dp)
             .clickable {
                 u = user
