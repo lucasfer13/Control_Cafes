@@ -29,7 +29,7 @@ fun CreateAccountScreen(){
         composable(route = Screen.LoginScreen.route){
             LogInScreen()
         }
-        composable(route = Screen.NewCarton.route) {
+        composable(route = Screen.NewCarton.route, ) {
             NewCarton()
         }
         composable(route = Screen.Enter.route){

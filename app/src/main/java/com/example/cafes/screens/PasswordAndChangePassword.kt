@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.example.cafes.models.User
 import java.math.BigInteger
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
@@ -63,7 +61,10 @@ fun PasswordScreen(){
                     isPasswordError.value = value.matches(Regex("[0123456789]"))
                     isPasswordError.value = value.length != 4
                     if (!isPasswordError.value) {
-                        if (verifyPassword(password = password.value)) navController.navigate(Screen.NewCarton.route)
+                        if (verifyPassword(password = password.value)) {
+                            navController.popBackStack()
+                            navController.navigate(Screen.NewCarton.route)
+                        }
                         else isPasswordError.value = true
                     }
                 },
@@ -80,7 +81,8 @@ fun PasswordScreen(){
             )
             Text(
                     text = "Cambiar contraseña",
-            Modifier.clickable { navController.navigate(Screen.ChangePasswordScreen.route) }
+            Modifier.clickable { navController.popBackStack()
+                navController.navigate(Screen.ChangePasswordScreen.route) }
             )
         }
     }

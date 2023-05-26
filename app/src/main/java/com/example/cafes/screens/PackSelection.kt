@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +19,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.cafes.models.Carton
 import com.example.cafes.models.TypeCarton
 import com.example.cafes.models.User
@@ -84,5 +81,6 @@ fun PackCard(pack: TypeCarton){
 fun MakeNewCarton(type: TypeCarton){
     val carton: Carton = Carton(consumed = 0, total = type.total, user = u, type = type)
     cartonViewModel.addCarton(carton)
+    navController.popBackStack()
     navController.navigate(Screen.LoginScreen.route)
 }
